@@ -1,11 +1,10 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactFlow, {
   MiniMap,
   Controls,
   useNodesState,
   useEdgesState,
-  applyNodeChanges,
 } from "reactflow";
 
 import CustomNode from "../CustomNode";
@@ -22,7 +21,7 @@ const nodeTypes = {
 const BasicFlow = () => {
   const data = useSelector((state: State) => state.data);
 
-  const [nodes, setNodes] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   const dispatch = useDispatch();
@@ -33,20 +32,18 @@ const BasicFlow = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const onNodesChange = useCallback(
-    (changes: any) =>
-      setNodes((nds: any) => {
-        dispatch(
-          // @ts-ignore
-          setData({
-            nodes: nds,
-          })
-        );
-        return applyNodeChanges(changes, nds);
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setNodes]
-  );
+  const handleNodesChange = () => {
+    dispatch(
+      // @ts-ignore
+      setData({
+        nodes: nodes.map(({ id, position, value }: any) => ({
+          id,
+          position,
+          value,
+        })),
+      })
+    );
+  };
 
   return (
     <ReactFlow
@@ -54,6 +51,7 @@ const BasicFlow = () => {
       edges={edges}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      onNodeDragStop={handleNodesChange}
       attributionPosition="top-right"
       nodeTypes={nodeTypes}
     >
