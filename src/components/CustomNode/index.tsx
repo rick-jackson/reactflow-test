@@ -13,12 +13,9 @@ const CustomNode = ({ data: nodeData }: NodeProps) => {
 
   return (
     <>
-      {+nodeData.id !== 1 && (
-        <Styled.Handle type="target" position={Position.Top} isConnectable={true} $hidden />
-      )}
+      <Styled.Handle type="target" position={Position.Top} isConnectable={true} $hidden />
       <Styled.NodeContent />
       <CustomSelect value={+nodeData.value} variant={nodeData.variant} data={nodeData} />
-
       <Styled.Handle
         type="source"
         $hidden={data.nodes[lastNodeIndex].id === nodeData.id}
