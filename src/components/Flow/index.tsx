@@ -13,9 +13,7 @@ import { getCustomNode } from "../../common/utils/getCustomNodes";
 import { getCustomEdges } from "../../common/utils/getCustomEdges";
 import "reactflow/dist/style.css";
 import { State } from "../../store/reducer";
-import { saveStateToLocalStorage } from "../../common/utils/localeStorageData";
 import { setData } from "../../store/actions";
-import { getFlowData } from "../../common/utils/getFlowData";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -32,6 +30,7 @@ const BasicFlow = () => {
   useEffect(() => {
     setNodes(getCustomNode(data.nodes));
     setEdges(getCustomEdges(data.edges));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const onNodesChange = useCallback(
@@ -45,6 +44,7 @@ const BasicFlow = () => {
         );
         return applyNodeChanges(changes, nds);
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [setNodes]
   );
 
