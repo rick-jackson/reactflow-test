@@ -30,7 +30,7 @@ export const Options = styled.ul`
   width: calc(100% - 8px);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  z-index: 99999;
+  z-index: 9;
 `;
 
 export const Option = styled.li`

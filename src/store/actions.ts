@@ -2,6 +2,7 @@ import type { Edge } from 'reactflow';
 
 export const SET_DATA = 'SET_DATA';
 export const SET_NODES = 'SET_NODES';
+export const RESET_FLOW = 'RESET_FLOW';
 
 export type CustomNode = {
   id: string;
@@ -34,4 +35,8 @@ export const setData = (data: DataNode) => ({
 export const setNodesPositions = (data: NodePosition) => ({
   type: SET_NODES,
   payload: data,
+});
+
+export const resetFlow = () => ({
+  type: RESET_FLOW,
 });

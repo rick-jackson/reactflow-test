@@ -1,6 +1,6 @@
 import { Edge } from 'reactflow';
 
-import { CustomNode, DataNode, SET_DATA, SET_NODES } from './actions';
+import { CustomNode, DataNode, RESET_FLOW, SET_DATA, SET_NODES } from './actions';
 import { getPreparedNodes } from '../common/utils/getPreparedNodesData';
 
 export type State = {
@@ -10,7 +10,7 @@ export type State = {
   };
 };
 
-const initialState: State = {
+export const initialState: State = {
   data: {
     edges: [],
     nodes: [
@@ -58,6 +58,11 @@ const reducer = (state = initialState, action: { payload: any; type: string }) =
           edges: state.data.edges,
           nodes: action.payload.nodes,
         },
+      };
+    case RESET_FLOW:
+      return {
+        ...state,
+        ...initialState,
       };
     default:
       return state;
