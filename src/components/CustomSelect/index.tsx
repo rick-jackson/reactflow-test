@@ -47,7 +47,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ data, value, variant }) => 
   return (
     <>
       <Styled.Select $open={open} onClick={handleClose}>
-        {selectedOption ? `Варіант ${variant}` : 'Виберіть значення'}
+        {selectedOption ? `Варіант ${variant}` : open ? 'Виберіть значення' : 'Вибрати значення'}
         <Styled.Arrow fontSize="inherit" $open={open} />
       </Styled.Select>
       {open && (
