@@ -1,0 +1,27 @@
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f9faff;
+}
+
+.react-flow__node-custom {
+  width: 240px;
+  height: 140px;
+  padding: 20px 4px 8px 4px;
+  border-radius: 4px;
+  border: 0.658px solid #fff;
+  background-color: #d1e7dd;
+}
