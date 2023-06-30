@@ -1,9 +1,9 @@
-import { type Edge, MarkerType } from "reactflow";
+import { type Edge, MarkerType } from 'reactflow';
 
 export const getCustomEdges = (edges: Edge[]): Edge[] => {
   return edges.map((edge: Edge) => ({
     ...edge,
-    type: "smoothstep",
+    type: 'smoothstep',
     markerEnd: {
       type: MarkerType.ArrowClosed,
     },

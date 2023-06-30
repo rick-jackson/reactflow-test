@@ -1,40 +1,34 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import type { Node } from 'reactflow';
+import { useDispatch } from 'react-redux';
 
-import { setData } from "../../store/actions";
-import { variants } from "../../common/data/selectVariants";
-import { getFlowData } from "../../common/utils/getFlowData";
+import { setData } from '../../store/actions';
+import { variants } from '../../common/data/selectVariants';
+import { getFlowData } from '../../common/utils/getFlowData';
 
-import * as Styled from "./index.styled";
+import * as Styled from './index.styled';
 
 type CustomSelectProps = {
   value?: number;
   variant?: string;
-  data: any;
+  data: Node;
 };
 
-const CustomSelect: React.FC<CustomSelectProps> = ({
-  data,
-  value,
-  variant,
-}) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({ data, value, variant }) => {
   const [open, setOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<number | undefined>(
-    value
-  );
+  const [selectedOption, setSelectedOption] = useState<number | undefined>(value);
 
   const dispatch = useDispatch();
 
   const handleSetData = (value: number) => {
     dispatch(
-      // @ts-ignore
       setData({
         ...getFlowData(data),
         selectedNode: {
           id: data.id,
           value,
         },
-      })
+      }),
     );
   };
 
@@ -53,7 +47,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   return (
     <>
       <Styled.Select $open={open} onClick={handleClose}>
-        {selectedOption ? `Варіант ${variant}` : "Виберіть значення"}
+        {selectedOption ? `Варіант ${variant}` : 'Виберіть значення'}
         <Styled.Arrow fontSize="inherit" $open={open} />
       </Styled.Select>
       {open && (
@@ -64,7 +58,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                 type="checkbox"
                 checked={selectedOption === value}
                 onChange={() => handleSelect(value)}
-              />{" "}
+              />{' '}
               {label}
             </Styled.Option>
           ))}

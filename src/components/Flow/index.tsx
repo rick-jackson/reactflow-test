@@ -1,19 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ReactFlow, {
-  MiniMap,
-  Controls,
-  useNodesState,
-  useEdgesState,
-} from "reactflow";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ReactFlow, { MiniMap, Controls, useNodesState, useEdgesState, Node } from 'reactflow';
 
-import type { CustomNode as CustomNodeType, State } from "../../store/reducer";
-import { getCustomNode } from "../../common/utils/getCustomNodes";
-import { getCustomEdges } from "../../common/utils/getCustomEdges";
-import { setData } from "../../store/actions";
-import CustomNode from "../CustomNode";
+import type { State } from '../../store/reducer';
+import { getCustomNode } from '../../common/utils/getCustomNodes';
+import { getCustomEdges } from '../../common/utils/getCustomEdges';
+import { setNodesPositions } from '../../store/actions';
+import CustomNode from '../CustomNode';
 
-import "reactflow/dist/style.css";
+import 'reactflow/dist/style.css';
 
 const nodeTypes = {
   custom: CustomNode,
@@ -28,21 +23,30 @@ const BasicFlow = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setNodes(getCustomNode(data.nodes));
+    setNodes(getCustomNode(data.nodes) as Node[]);
     setEdges(getCustomEdges(data.edges));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleNodesChange = () => {
     dispatch(
-      // @ts-ignore
-      setData({
-        nodes: nodes.map(({ id, position, value }: CustomNodeType) => ({
-          id,
-          position,
-          value,
-        })),
-      })
+      setNodesPositions({
+        nodes: nodes.map(
+          ({
+            id,
+            value,
+            position,
+          }: {
+            id: string;
+            value?: number | undefined;
+            position: { x: number; y: number };
+          }) => ({
+            id,
+            position,
+            value,
+          }),
+        ),
+      }),
     );
   };
 

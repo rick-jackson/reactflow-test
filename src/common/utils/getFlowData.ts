@@ -1,4 +1,4 @@
-import type { Edge, Node } from "reactflow";
+import type { Edge, Node } from 'reactflow';
 
 export const getFlowData = (data: Node) => {
   const node = {

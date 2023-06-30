@@ -1,31 +1,23 @@
-import { memo } from "react";
-import { NodeProps, Position } from "reactflow";
-import { useSelector } from "react-redux";
+import { memo } from 'react';
+import { NodeProps, Position } from 'reactflow';
+import { useSelector } from 'react-redux';
 
-import CustomSelect from "../CustomSelect";
+import type { State } from '../../store/reducer';
+import CustomSelect from '../CustomSelect';
 
-import * as Styled from "./index.styled";
+import * as Styled from './index.styled';
 
 const CustomNode = ({ data: nodeData }: NodeProps) => {
-  const data = useSelector((state: any) => state.data);
+  const data = useSelector((state: State) => state.data);
   const lastNodeIndex = data.nodes.length - 1;
 
   return (
     <>
       {+nodeData.id !== 1 && (
-        <Styled.Handle
-          type="target"
-          position={Position.Top}
-          isConnectable={true}
-          $hidden
-        />
+        <Styled.Handle type="target" position={Position.Top} isConnectable={true} $hidden />
       )}
       <Styled.NodeContent />
-      <CustomSelect
-        value={+nodeData.value}
-        variant={nodeData.variant}
-        data={nodeData}
-      />
+      <CustomSelect value={+nodeData.value} variant={nodeData.variant} data={nodeData} />
 
       <Styled.Handle
         type="source"
@@ -37,6 +29,6 @@ const CustomNode = ({ data: nodeData }: NodeProps) => {
   );
 };
 
-CustomNode.displayName = "CustomNode";
+CustomNode.displayName = 'CustomNode';
 
 export default memo(CustomNode);

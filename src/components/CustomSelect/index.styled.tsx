@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import styled from 'styled-components';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export const Select = styled.div<{ $open: boolean }>`
   height: 40px;
   margin-top: 4px;
-  outline: 0.658px solid ${({ $open }) => ($open ? "#EAF2FF" : "#479f76")};
+  outline: 0.658px solid ${({ $open }) => ($open ? '#EAF2FF' : '#479f76')};
   border-radius: 4px;
-  ${({ $open }) =>
-    $open && "border-bottom-left-radius: 0; border-bottom-right-radius: 0;"}
+  ${({ $open }) => $open && 'border-bottom-left-radius: 0; border-bottom-right-radius: 0;'}
   cursor: pointer;
   color: #37352f;
   font-size: 14px;
@@ -52,5 +51,5 @@ export const Option = styled.li`
 
 export const Arrow = styled(ArrowForwardIosIcon)<{ $open: boolean }>`
   color: #2c7dfa;
-  transform: rotate(${({ $open }) => ($open ? "270deg" : "90deg")});
+  transform: rotate(${({ $open }) => ($open ? '270deg' : '90deg')});
 `;

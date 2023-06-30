@@ -1,9 +1,7 @@
-import type { Edge, Node } from "reactflow";
+import { Edge } from 'reactflow';
 
-import { type Payload, SET_DATA } from "./actions";
-import { getPreparedNodes } from "../common/utils/getPreparedNodesData";
-
-export type CustomNode = Node & { value?: number };
+import { CustomNode, DataNode, SET_DATA, SET_NODES } from './actions';
+import { getPreparedNodes } from '../common/utils/getPreparedNodesData';
 
 export type State = {
   data: {
@@ -17,9 +15,9 @@ const initialState: State = {
     edges: [],
     nodes: [
       {
-        id: "1",
+        id: '1',
         data: {
-          id: "1",
+          id: '1',
         },
         position: { x: 20, y: 20 },
       },
@@ -27,48 +25,40 @@ const initialState: State = {
   },
 };
 
-const reducer = (
-  state = initialState,
-  action: { payload: Payload; type: string }
-) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const reducer = (state = initialState, action: { payload: any; type: string }) => {
+  let selectedNode;
   switch (action.type) {
     case SET_DATA:
-      if (action.payload.nodes) {
-        return {
-          ...state,
-          data: {
-            edges: state.data.edges,
-            nodes: action.payload.nodes,
-          },
-        };
-      } else {
-        const selectedNode = state.data.nodes.find(
-          (el: Node) => el.id === action.payload.selectedNode.id
-        ) as CustomNode;
-        return {
-          ...state,
-          data: !selectedNode.value
-            ? {
-                edges: [...state.data.edges, action.payload.edge],
-                nodes: [
-                  ...getPreparedNodes(
-                    action.payload.selectedNode as Payload["selectedNode"],
-                    state.data.nodes
-                  ),
-                  action.payload.node,
-                ],
-              }
-            : {
-                nodes: [
-                  ...getPreparedNodes(
-                    action.payload.selectedNode as Payload["selectedNode"],
-                    state.data.nodes
-                  ),
-                ],
-                edges: state.data.edges,
-              },
-        };
-      }
+      selectedNode = state.data.nodes.find(
+        (el: CustomNode) => el.id === action.payload.selectedNode.id,
+      ) as CustomNode;
+      return {
+        ...state,
+        data: !selectedNode.value
+          ? {
+              edges: [...state.data.edges, action.payload.edge],
+              nodes: [
+                ...getPreparedNodes(
+                  action.payload.selectedNode as DataNode['selectedNode'],
+                  state.data.nodes,
+                ),
+                action.payload.node,
+              ],
+            }
+          : {
+              nodes: [...getPreparedNodes(action.payload.selectedNode, state.data.nodes)],
+              edges: state.data.edges,
+            },
+      };
+    case SET_NODES:
+      return {
+        ...state,
+        data: {
+          edges: state.data.edges,
+          nodes: action.payload.nodes,
+        },
+      };
     default:
       return state;
   }

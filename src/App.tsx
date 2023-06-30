@@ -1,6 +1,6 @@
-import Flow from "./components/Flow";
+import Flow from './components/Flow';
 
-import "./styles.css";
+import './styles.css';
 
 export default function App() {
   return (
