@@ -1,6 +1,6 @@
-import { Edge, Node } from "reactflow";
+import type { Edge, Node } from "reactflow";
 
-import { Payload, SET_DATA } from "./actions";
+import { type Payload, SET_DATA } from "./actions";
 import { getPreparedNodes } from "../common/utils/getPreparedNodesData";
 
 export type CustomNode = Node & { value?: number };

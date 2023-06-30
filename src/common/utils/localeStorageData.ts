@@ -1,4 +1,6 @@
-export const saveStateToLocalStorage = (state: any) => {
+import type { State } from "../../store/reducer";
+
+export const saveStateToLocalStorage = (state: State) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("state", serializedState);

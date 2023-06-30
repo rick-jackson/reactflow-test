@@ -1,4 +1,4 @@
-import { CustomNode } from "../../store/reducer";
+import type { CustomNode } from "../../store/reducer";
 
 export const getCustomNode = (nodes: CustomNode[]): CustomNode[] => {
   const nodesVariant: number[] = [];

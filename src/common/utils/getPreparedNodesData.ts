@@ -1,5 +1,5 @@
-import { Node } from "reactflow";
-import { CustomNode, State } from "../../store/reducer";
+import type { Node } from "reactflow";
+import type { CustomNode, State } from "../../store/reducer";
 
 export const getPreparedNodes = (
   { id, value }: { id: string; value: number },

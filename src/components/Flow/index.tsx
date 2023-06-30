@@ -7,12 +7,13 @@ import ReactFlow, {
   useEdgesState,
 } from "reactflow";
 
-import CustomNode from "../CustomNode";
+import type { CustomNode as CustomNodeType, State } from "../../store/reducer";
 import { getCustomNode } from "../../common/utils/getCustomNodes";
 import { getCustomEdges } from "../../common/utils/getCustomEdges";
-import "reactflow/dist/style.css";
-import { State } from "../../store/reducer";
 import { setData } from "../../store/actions";
+import CustomNode from "../CustomNode";
+
+import "reactflow/dist/style.css";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -36,7 +37,7 @@ const BasicFlow = () => {
     dispatch(
       // @ts-ignore
       setData({
-        nodes: nodes.map(({ id, position, value }: any) => ({
+        nodes: nodes.map(({ id, position, value }: CustomNodeType) => ({
           id,
           position,
           value,

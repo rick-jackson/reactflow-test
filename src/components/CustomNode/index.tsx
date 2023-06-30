@@ -2,7 +2,7 @@ import { memo } from "react";
 import { NodeProps, Position } from "reactflow";
 import { useSelector } from "react-redux";
 
-import CustomInput from "../CustomSelect";
+import CustomSelect from "../CustomSelect";
 
 import * as Styled from "./index.styled";
 
@@ -21,7 +21,7 @@ const CustomNode = ({ data: nodeData }: NodeProps) => {
         />
       )}
       <Styled.NodeContent />
-      <CustomInput
+      <CustomSelect
         value={+nodeData.value}
         variant={nodeData.variant}
         data={nodeData}
