@@ -1,21 +1,12 @@
-import type { Edge } from 'reactflow';
+import type Edge from '../entities/edge';
+import type Node from '../entities/node';
 
 export const SET_DATA = 'SET_DATA';
 export const SET_NODES = 'SET_NODES';
 export const RESET_FLOW = 'RESET_FLOW';
 
-export type CustomNode = {
-  id: string;
-  value?: number | undefined;
-  position: { x: number; y: number };
-  data?: {
-    id?: string;
-    value?: number;
-  };
-};
-
 export type DataNode = {
-  node: CustomNode;
+  node: Node;
   edge: Edge;
   selectedNode: {
     id: string;
@@ -24,7 +15,7 @@ export type DataNode = {
 };
 
 export type NodePosition = {
-  nodes: CustomNode[];
+  nodes: Node[];
 };
 
 export const setData = (data: DataNode) => ({

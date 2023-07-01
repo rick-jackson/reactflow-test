@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import type { Node } from 'reactflow';
 import { useDispatch } from 'react-redux';
 
+import type Node from '../../entities/node';
 import { setData } from '../../store/actions';
 import { variants } from '../../common/data/selectVariants';
 import { getFlowData } from '../../common/utils/getFlowData';

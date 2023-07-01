@@ -13,7 +13,7 @@ const CustomNode = ({ data: nodeData }: NodeProps) => {
 
   return (
     <>
-      <Styled.Handle type="target" position={Position.Top} isConnectable={true} $hidden />
+      <Styled.Handle type="target" position={Position.Top} isConnectable={false} $hidden />
       <Styled.NodeContent />
       <CustomSelect value={+nodeData.value} variant={nodeData.variant} data={nodeData} />
       <Styled.Handle

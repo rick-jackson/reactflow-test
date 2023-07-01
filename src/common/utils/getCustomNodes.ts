@@ -1,9 +1,9 @@
-import type { CustomNode } from '../../store/actions';
+import type Node from '../../entities/node';
 
-export const getCustomNode = (nodes: CustomNode[]): CustomNode[] => {
+export const getCustomNode = (nodes: Node[]): Node[] => {
   const nodesVariant: number[] = [];
 
-  return nodes.map((el: CustomNode) => {
+  return nodes.map((el: Node) => {
     nodesVariant.push(el.value as number);
     return {
       ...el,

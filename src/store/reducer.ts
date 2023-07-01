@@ -1,11 +1,11 @@
-import { Edge } from 'reactflow';
-
-import { CustomNode, DataNode, RESET_FLOW, SET_DATA, SET_NODES } from './actions';
+import type Node from '../entities/node';
+import type Edge from '../entities/edge';
+import { DataNode, RESET_FLOW, SET_DATA, SET_NODES } from './actions';
 import { getPreparedNodes } from '../common/utils/getPreparedNodesData';
 
 export type State = {
   data: {
-    nodes: CustomNode[];
+    nodes: Node[];
     edges: Edge[];
   };
 };
@@ -31,8 +31,8 @@ const reducer = (state = initialState, action: { payload: any; type: string }) =
   switch (action.type) {
     case SET_DATA:
       selectedNode = state.data.nodes.find(
-        (el: CustomNode) => el.id === action.payload.selectedNode.id,
-      ) as CustomNode;
+        (el: Node) => el.id === action.payload.selectedNode.id,
+      ) as Node;
       return {
         ...state,
         data: !selectedNode.value

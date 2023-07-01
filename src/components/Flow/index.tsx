@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactFlow, { MiniMap, Controls, useNodesState, useEdgesState, Node } from 'reactflow';
+import ReactFlow, { MiniMap, Controls, useNodesState, useEdgesState, Node, Edge } from 'reactflow';
 
 import { type State } from '../../store/reducer';
-import type { CustomNode as CustomNodeType } from '../../store/actions';
+import type CustomNodeType from '../../entities/node';
 import { getCustomNode } from '../../common/utils/getCustomNodes';
 import { getCustomEdges } from '../../common/utils/getCustomEdges';
 import { resetFlow, setNodesPositions } from '../../store/actions';
@@ -26,7 +26,7 @@ const BasicFlow = () => {
 
   useEffect(() => {
     setNodes(getCustomNode(data.nodes) as Node[]);
-    setEdges(getCustomEdges(data.edges));
+    setEdges(getCustomEdges(data.edges) as Edge[]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
